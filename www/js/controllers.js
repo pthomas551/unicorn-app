@@ -1,7 +1,13 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornsCtrl', function($scope) {
-
+.controller('UnicornsCtrl', function($scope, $http) {
+  $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&api_key=dc6zaTOxFJmzC').then(function(resp) {
+    console.log('Success', resp);
+    // For JSON responses, resp.data contains the result
+  }, function(err) {
+    console.error('ERR', err);
+    // err.status will contain the status code
+  });
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
