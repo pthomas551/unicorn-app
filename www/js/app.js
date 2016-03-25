@@ -45,7 +45,7 @@ angular.module('unicorn', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'tab-unicorns': {
           templateUrl: 'templates/tab-unicorns.html',
-          controller: 'unicornsCtrl'
+          controller: 'UnicornsCtrl'
         }
       }
     })
