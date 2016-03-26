@@ -1,16 +1,16 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Trending">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
+    <div collection-repeat="item in items" item-width="25%" style="padding:0px;" class="col col-25">
+    <a ng-href="#">
+      <div style="background-image:url({{item.images.fixed_height.url}});
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+        background-size:contain;
+        width:100%;
+        height:0;
+        padding-top:100%">
+      </div>
+    </a>
+  </div>
+  <ion-infinite-scroll on-infinite="loadMore()" distance="5%" zooming="true"></ion-infinite-scroll>
+</ion-content>
 </ion-view>
