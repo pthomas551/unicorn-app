@@ -1,41 +1,17 @@
-angular.module('starter.controllers', [])
+angular.module('unicorn.controllers', [])
 
-.controller('UnicornsCtrl', function($scope, $http) {
-  $scope.items = [];
-  $scope.loadMore = function() { $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&api_key=dc6zaTOxFJmzC').then(function(resp) {
-    $scope.$broadcast('scroll.infiniteScrollComplete');
-    // For JSON responses, resp.data contains the result
-  }, function(err) {
-    console.error('ERR', err);
-    // err.status will contain the status code
-  });
-};
-  $scope.$on('$stateChangeSuccess', function() {
-    $scope.loadMore();
-  });
+.controller('UnicornsCtrl', function($scope, $timeout, PictureService) {
+	$scope.items = [];
+	PictureService.GetFeed().then(function(items){
+		$scope.items = items;
+	});
+	$scope.loadMore = function() {
+		PictureService.GetNewImages().then(function(items){
+			$scope.items = $scope.items.concat(items);
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+		});
+	};
 })
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+.controller('TrendingCtrl', function() {})
+.controller('UnicornDetailCtrl', function() {})
+.controller('SearchCtrl', function() {});
