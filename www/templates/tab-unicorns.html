@@ -1,9 +1,10 @@
 <ion-view view-title="unicorns!!!!!1">
-  reached page
+  <ion-content>
   <ion-list>
   	<ion-item class="pictures" ng-repeat="item in items">
   		<img src="{{item.images.fixed_width_small.url}} " />
   	</ion-item>
   </ion-list>
   <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+</ion-content>
 </ion-view>
