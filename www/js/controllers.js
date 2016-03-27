@@ -55,15 +55,26 @@ angular.module('unicorn.controllers', [])
     // Execute action
     });
     $scope.$on('modal.shown', function() {
-      console.log('Modal is shown!');
     });
 
     $scope.showImage = function(url) {
       $scope.imageSrc = url;
-      console.log(url); 
       $scope.openModal();
     };
   }
 ])
-.controller('SearchCtrl', function() {})
+.controller('SearchCtrl', function($scope, $timeout, $state, SearchService) {
+  $scope.items = [];
+  $scope.query = '';
+  $scope.onSearchChange = function() {
+	SearchService.GetFeed().then(function(items){
+  	$timeout(function() {
+      $scope.$apply(function() {
+        $scope.items = items;
+        console.log(items);
+      });
+    }, 500);
+  });
+  };
+})
 ;

@@ -40,4 +40,17 @@ angular.module('unicorn.services', [])
     }
   };
 })
+.factory('SearchService', function($http) {
+  var BASE_URL = 'http://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC&rating=pg';
+  var items = [];
+  var offset = 25;
+  return {
+    GetFeed: function(query) {
+      return $http.get(BASE_URL+'&q='+query).then(function(response) {
+        items = response.data.data;
+        return items;
+      });
+    }
+  };
+})
 ;
