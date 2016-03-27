@@ -49,15 +49,6 @@ angular.module('unicorn', ['ionic', 'unicorn.controllers', 'unicorn.services'])
         }
       }
     })
-    .state('tab.unicorn-detail', {
-      url: '/unicorns/:unicornId',
-      views: {
-        'tab-unicorns': {
-          templateUrl: 'templates/unicorn-detail.html',
-          controller: 'UnicornDetailCtrl'
-        }
-      }
-    })
 
   .state('tab.trending', {
     url: '/trending',
