@@ -65,16 +65,15 @@ angular.module('unicorn.controllers', [])
 ])
 .controller('SearchCtrl', function($scope, $timeout, $state, SearchService) {
   $scope.items = [];
-  $scope.query = '';
-  $scope.onSearchChange = function() {
-	SearchService.GetFeed().then(function(items){
+  $scope.onSearchChange = function(query) {
+	SearchService.GetFeed(query).then(function(items){
   	$timeout(function() {
       $scope.$apply(function() {
         $scope.items = items;
-        console.log(items);
       });
-    }, 500);
+    }, 100);
   });
+
   };
 })
 ;
